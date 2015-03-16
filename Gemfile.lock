@@ -257,22 +257,21 @@ GEM
       netrc (~> 0.7)
     retriable (1.4.1)
     rgen (0.6.6)
-    rspec (3.2.0)
-      rspec-core (~> 3.2.0)
-      rspec-expectations (~> 3.2.0)
-      rspec-mocks (~> 3.2.0)
-    rspec-core (3.2.2)
-      rspec-support (~> 3.2.0)
-    rspec-expectations (3.2.0)
+    rspec (3.0.0)
+      rspec-core (~> 3.0.0)
+      rspec-expectations (~> 3.0.0)
+      rspec-mocks (~> 3.0.0)
+    rspec-core (3.0.4)
+      rspec-support (~> 3.0.0)
+    rspec-expectations (3.0.4)
       diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.2.0)
+      rspec-support (~> 3.0.0)
     rspec-its (1.2.0)
       rspec-core (>= 3.0.0)
       rspec-expectations (>= 3.0.0)
-    rspec-mocks (3.2.1)
-      diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.2.0)
-    rspec-support (3.2.2)
+    rspec-mocks (3.0.4)
+      rspec-support (~> 3.0.0)
+    rspec-support (3.0.4)
     rsync (1.0.9)
     serverspec (2.10.1)
       multi_json
@@ -339,6 +338,7 @@ DEPENDENCIES
   puppet-syntax
   puppetlabs_spec_helper
   rake
+  rspec (~> 3.0.0)
   rspec-puppet!
   simplecov
   travis
