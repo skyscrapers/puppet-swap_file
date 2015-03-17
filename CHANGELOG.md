@@ -1,5 +1,10 @@
 ## Change Log
 
+## 2014-08-24 - Release 2.0.0
+### Summary
+
+- Add type and provider for swap_file
+
 ## 2015-03-17 - Release 1.1.1
 ### Summary
 
