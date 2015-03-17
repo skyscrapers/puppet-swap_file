@@ -20,7 +20,9 @@ describe 'swap_file' do
         should contain_exec('Create swap file /mnt/swap.1').
           with_command('/bin/dd if=/dev/zero of=/mnt/swap.1 bs=1M count=1073')
         }
-    it { should contain_exec('Attach swap file /mnt/swap.1') }
+
+    it { should contain_swap_file('/mnt/swap.1') }
+
     it { should contain_mount('/mnt/swap.1').with_ensure('present') }
   end
 
@@ -37,7 +39,9 @@ describe 'swap_file' do
         should contain_exec('Create swap file /foo/bar').
           with_command('/bin/dd if=/dev/zero of=/foo/bar bs=1M count=2147')
         }
-    it { should contain_exec('Attach swap file /foo/bar') }
+
+    it { should contain_swap_file('/foo/bar') }
+
     it { should contain_mount('/foo/bar').with_ensure('present') }
   end
 
@@ -47,15 +51,17 @@ describe 'swap_file' do
       :osfamily => osfamily, :memorysize => '1 GB',
     }}
     it { should compile.with_all_deps }
-    it { should contain_file('/foo/bar') }
+    it { should contain_file('/mnt/swap.1') }
 
-    it { should contain_swap_file__files('/foo/bar') }
+    it { should contain_swap_file__files('/mnt/swap.1') }
     it {
-        should contain_exec('Create swap file /foo/bar').
-          with_command('/bin/dd if=/dev/zero of=/foo/bar bs=1M count=1073')
+        should contain_exec('Create swap file /mnt/swap.1').
+          with_command('/bin/dd if=/dev/zero of=/mnt/swap.1 bs=1M count=1073')
         }
-    it { should contain_exec('Attach swap file /foo/bar') }
-    it { should_not contain_mount('/foo/bar').with_ensure('present') }
+
+    it { should contain_swap_file('/mnt/swap.1') }
+
+    it { should_not contain_mount('/mnt/swap.1').with_ensure('present') }
   end
 
   context 'officially support operating system' do
@@ -65,6 +71,8 @@ describe 'swap_file' do
       it_behaves_like "with default parameters", :osfamily => 'Debian'
 
       it_behaves_like "with swapfile and size parameters", :osfamily => 'Debian'
+
+      it_behaves_like "can specify no mount", :osfamily => 'Debian'
     end
 
     describe 'RedHat' do
@@ -73,6 +81,8 @@ describe 'swap_file' do
       it_behaves_like "with default parameters", :osfamily => 'RedHat'
 
       it_behaves_like "with swapfile and size parameters", :osfamily => 'RedHat'
+
+      it_behaves_like "can specify no mount", :osfamily => 'Debian'
     end
   end
 
@@ -83,6 +93,8 @@ describe 'swap_file' do
       it_behaves_like "with default parameters", :osfamily => 'Solaris'
 
       it_behaves_like "with swapfile and size parameters", :osfamily => 'Solaris'
+
+      it_behaves_like "can specify no mount", :osfamily => 'Debian'
     end
   end
 
