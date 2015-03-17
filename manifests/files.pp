@@ -74,12 +74,11 @@ define swap_file::files (
     file { $swapfile:
       ensure  => absent,
       backup  => false,
-      require => Exec["Detach swap file ${swapfile}"],
+      require => Swap_file[$swapfile],
     }
     mount { $swapfile:
       ensure => absent,
       device => $swapfile,
-      require => Swap_file[$swapfile],
     }
   }
 
